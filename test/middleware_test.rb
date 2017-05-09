@@ -81,8 +81,6 @@ module Sidekiq
         actor = MiniTest::Mock.new
         actor.expect(:processor_done, nil, [@processor])
         actor.expect(:real_thread, nil, [nil, nil])
-        2.times { @boss.expect(:async, actor, []) }
-        2.times { @boss.expect(:options, {:queues => ['default'] }, []) }
 
         @processor.process(msg)
         @boss.verify
