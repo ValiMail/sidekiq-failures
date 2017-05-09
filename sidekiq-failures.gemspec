@@ -22,5 +22,4 @@ Gem::Specification.new do |gem|
   gem.add_development_dependency "rack-test"
   gem.add_development_dependency "sprockets"
   gem.add_development_dependency "sinatra"
-  gem.add_development_dependency 'appraisal'
 end
