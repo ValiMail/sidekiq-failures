@@ -9,7 +9,13 @@ module Sidekiq
       Sidekiq::Web
     end
 
+    def token
+      @token ||= Rack::Protection::AuthenticityToken.random_token
+    end
+
     before do
+      env 'rack.session', { csrf: token }
+      env 'HTTP_X_CSRF_TOKEN', token
       Sidekiq.redis = REDIS
       Sidekiq.redis {|c| c.flushdb }
     end
